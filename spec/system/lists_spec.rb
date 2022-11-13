@@ -15,7 +15,7 @@ describe "投稿のテスト" do
       end
     end
   end
-end
+
 
   describe "投稿画面のテスト" do
     before do
@@ -40,7 +40,7 @@ end
   end
   describe "一覧画面のテスト" do
     before do
-      visit lists_path  
+      visit lists_path
     end
     context "一覧の表示とリンクの確認" do
       it "一覧表示画面に投稿されたもの表示されているか" do
@@ -51,7 +51,7 @@ end
   end
   describe "詳細画面のテスト" do
     before do
-      visit  list_path(list) 
+      visit  list_path(list)
     end
     context "表示のテスト" do
       it "削除リンクが存在しているか" do
@@ -76,12 +76,26 @@ end
   end
 
   describe "編集画面のテスト" do
-    before：編集画面への遷移
-    context：表示の確認
-      it：編集前のタイトルと本文がフォームに表示(セット)されている
-        テストコード
-      it：保存ボタンが表示される
-    context：更新処理に関するテスト
-      it：更新後のリダイレクト先は正しいか
-        テストコード
+    before：do
+      visit edit_book_path(book)
+    end
+    context "表示の確認" do
+      it "編集前のタイトルと本文がフォームに表示(セット)されている" do
+        expect(page).to have_field "book[:title]",with: book.title
+        expect(page).to have_field "book[:body]",with: book.body
+      end
+      it "保存ボタンが表示される" do
+        expect(page).to have_button "保存"
+      end
+    end
+    context "更新処理に関するテスト" do
+      it "更新後のリダイレクト先は正しいか" do
+        fill_in "list[:title]",with:Faker::Lorem.characters(number.5)
+        fill_in "list[:body]",with:Faker::Lorem.characters(number.20)
+        click_button "保存"
+        expect(page).to have_current_path list_path(list)
+      end
+    end
   end
+
+end
