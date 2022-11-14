@@ -10,7 +10,7 @@ describe "投稿のテスト" do
       it "トップ画面(top_path)に「ここはTopページです」が表示されているか" do
         expect(page).to have_content "ここはTopページです"
       end
-      it：top_pathが"/top"であるか do
+      it "top_pathが/topであるか" do
         expect(current_path).to eq("/")
       end
     end
@@ -90,12 +90,10 @@ describe "投稿のテスト" do
     end
     context "更新処理に関するテスト" do
       it "更新後のリダイレクト先は正しいか" do
-        fill_in "list[:title]",with:Faker::Lorem.characters(number.5)
-        fill_in "list[:body]",with:Faker::Lorem.characters(number.20)
+        fill_in "list[:title]",with: Faker::Lorem.characters(number:5)
+        fill_in "list[:body]",with: Faker::Lorem.characters(number:20)
         click_button "保存"
         expect(page).to have_current_path list_path(list)
       end
     end
   end
-
-end
