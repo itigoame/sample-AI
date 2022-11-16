@@ -1,8 +1,9 @@
 require 'rails_helper'
-
+# 大枠
 describe "投稿のテスト" do
   let!(:book){FactoryBot.create(:book,title:"hoge",body:"body")}
   describe "トップ画面(top_path)のテスト" do
+    #　先にページを移動してから
     before do
       visit rooot_path
     end
