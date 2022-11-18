@@ -12,6 +12,7 @@ describe "投稿のテスト" do
         expect(page).to have_content "ここはTopページです"
       end
       it "top_pathが/topであるか" do
+        # 現在いるページ
         expect(current_path).to eq("/")
       end
     end
@@ -24,6 +25,7 @@ describe "投稿のテスト" do
     end
     context "表示の確認" do
       it "new_list_pathが/lists/newであるか" do
+        # 現在のページのURLと設計図のURLがイコールか
         expect(current_path).to eq("/lists/new")
       end
       it "投稿ボタンが表示されているか" do
